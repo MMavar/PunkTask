@@ -1,0 +1,70 @@
+﻿@model IEnumerable<PunkAPI.Models.Piva>
+
+@{
+    ViewData["Title"] = "Pive";
+}
+
+<h1>Pive</h1>
+
+<nav>
+    <h3><a href="/Punk/NameAPI">Search by name</a></h3>
+    <h3><a href="/Punk/AgeAPI">Search by age</a></h3>
+
+</nav>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Name: @Html.TextBox("NameSearch") <br />
+        <input type="submit" value="Filter" />
+    </p>
+}
+
+<div>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>First brewed</th>
+            <th>ABV</th>
+            <th>Food Pairing</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.image_url)*@
+                    <img src="@Url.Content(item.image_url)" alt="Image" height="200px" width="100px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.first_brewed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.abv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.food_pairing)
+                </td>
+
+
+            </tr>
+        }
+
+    </table>
+
+
+</div>
+
+
